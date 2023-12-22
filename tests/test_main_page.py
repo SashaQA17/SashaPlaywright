@@ -12,7 +12,7 @@ def test_title(page):
     main_page = MainPage(page)
     main_page.open('https://demoqa.com/')
     expect(page).to_have_title('DEMOQA')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @allure.feature('main page')
 @allure.story('check all buttons')
@@ -25,7 +25,7 @@ def test_all_buttons(page):
     main_page.check_widget_btn('//h5[text()="Widgets"]')
     main_page.check_interactions_btn('//h5[text()="Interactions"]')
     main_page.check_book_store_btn('//h5[text()="Book Store Application"]')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @allure.feature('main page')
 @allure.story('check elements btn')
@@ -34,7 +34,7 @@ def test_elements_btn(page):
     main_page.open('https://demoqa.com/')
     main_page.click_elements_btn()
     expect(page).to_have_url('https://demoqa.com/elements')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @pytest.mark.skip_browser('chromium')
 @allure.feature('main page')
