@@ -44,7 +44,7 @@ def test_forms_btn(page):
     main_page.open('https://demoqa.com/')
     main_page.click_forms_btn()
     expect(page).to_have_url('https://demoqa.com/forms')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @pytest.mark.skip_browser('chromium')
 def test_alerts_btn(page):
@@ -52,7 +52,7 @@ def test_alerts_btn(page):
     main_page.open('https://demoqa.com/')
     main_page.click_alerts_btn()
     expect(page).to_have_url('https://demoqa.com/alertsWindows')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @pytest.mark.skip_browser('chromium')
 def test_widget_btn(page):
@@ -60,7 +60,7 @@ def test_widget_btn(page):
     main_page.open('https://demoqa.com/')
     main_page.click_widget_btn()
     expect(page).to_have_url('https://demoqa.com/widgets')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @pytest.mark.skip_browser('chromium')
 def test_interactions_btn(page):
@@ -68,7 +68,7 @@ def test_interactions_btn(page):
     main_page.open('https://demoqa.com/')
     main_page.click_interactions_btn()
     expect(page).to_have_url('https://demoqa.com/interaction')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 @pytest.mark.only_browser('firefox')
 def test_book_store_btn(page):
@@ -76,7 +76,7 @@ def test_book_store_btn(page):
     main_page.open('https://demoqa.com/')
     main_page.click_book_store_btn()
     expect(page).to_have_url('https://demoqa.com/books')
-    main_page.screen_shot()
+    #main_page.screen_shot()
 
 
 
