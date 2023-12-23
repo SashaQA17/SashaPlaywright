@@ -62,7 +62,7 @@ def test_widget_btn(page):
     expect(page).to_have_url('https://demoqa.com/widgets')
     #main_page.screen_shot()
 
-@pytest.mark.skip_browser('chromium')
+@pytest.mark.only_browser('chromium')
 def test_interactions_btn(page):
     main_page = MainPage(page)
     main_page.open('https://demoqa.com/')
