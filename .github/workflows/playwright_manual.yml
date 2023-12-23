@@ -29,7 +29,48 @@ jobs:
         run: python -m playwright install
       - name: first_tests
         if: "github.event.inputs.deployment_target == 'first_tests'"
-        run: pytest -v
+        run: pytest -v -s --alluredir=allure_results
       - name: second_tests
         if: "github.event.inputs.deployment_target == 'second_tests'"
-        run: pytest -v --browser=firefox
+        run: pytest -v --browser=firefox --alluredir=allure_results
+      - name: store allure results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure_results
+          path:
+            allure_results
+          retention-days: 1
+
+  generate-reports:
+    runs-on: ubuntu-latest
+    needs: tests
+    name: generate reports
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft' # See 'Supported distributions' for available options
+          java-version: '17'
+      - run: sudo wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && sudo tar -zxvf allure-2.23.1.tgz -C /opt/ && sudo ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
+      - name: download all workflow run artifacts
+        uses: actions/download-artifact@v3
+      - run: allure generate -c allure_results -o _site
+      - name: store generated report
+        uses: actions/upload-artifact@v3
+        with:
+          name: _site
+          path:
+            _site
+          retention-days: 1
+
+  publish-report:
+    runs-on: ubuntu-latest
+    needs: generate-report
+    name: report publication
+    steps:
+      - name: download all workflow run artifacts
+        uses: actions/download-artifact@v3
+      - name: upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+      - name: deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1.2.9
