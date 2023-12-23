@@ -1,4 +1,4 @@
-name: manual tests
+name: Manual tests
 
 on:
   workflow_dispatch:
@@ -6,11 +6,11 @@ on:
       deployment_target:
         description: Choose target
         required: true
-        default: chromium_test
+        default: -first_tests
         type: choice
         options:
-          -chromium_test
-          -firefox_test
+          -first_tests
+          -second_tests
 
 jobs:
   test:
@@ -27,9 +27,9 @@ jobs:
         run: pip install -r requirements.txt
       - name: ensure browsers are installed
         run: python -m playwright install
-      - name: chromium_test
-        if: "github.event.inputs.deployment_target == 'chromium_test'"
+      - name: first_tests
+        if: "github.event.inputs.deployment_target == 'first_tests'"
         run: pytest -v
-      - name: firefox_test
-        if: "github.event.inputs.deployment_target == 'firefox_test'"
+      - name: second_tests
+        if: "github.event.inputs.deployment_target == 'second_tests'"
         run: pytest -v --browser=firefox
