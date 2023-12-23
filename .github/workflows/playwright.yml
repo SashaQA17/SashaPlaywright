@@ -17,7 +17,7 @@ jobs:
       - name: install dependencies
         run: pip install -r requirements.txt
       - name: ensure browsers are installed
-        run: qwe-python -m playwright install
+        run: python -m playwright install
       - name: Run tests
         run: pytest -v --browser=firefox --browser=chromium
 
