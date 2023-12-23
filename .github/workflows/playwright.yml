@@ -17,7 +17,7 @@ jobs:
       - name: install dependencies
         run: pip install -r requirements.txt
       - name: ensure browsers are installed
-        run: sudo snap install chromium
+        run: python -m playwright install --with-deps
       - name: Run tests
         run: pytest -v
 
