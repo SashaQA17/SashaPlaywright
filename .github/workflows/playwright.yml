@@ -1,16 +1,8 @@
-name: two browsers tests
+name: Auto tests
 
 on:
   workflow_dispatch:
-    inputs:
-      deployment_target:
-        description: Choose target
-        required: true
-        default: firefox_test
-        type: choice
-        options:
-          -chromium_test
-          -firefox_test
+
 
 jobs:
   test:
@@ -27,12 +19,10 @@ jobs:
         run: pip install -r requirements.txt
       - name: ensure browsers are installed
         run: python -m playwright install
-      - name: chromium_test
-        if: "github.event.inputs.deployment_target == 'chromium_test'"
+      - name: Run tests
         run: pytest -v
-      - name: firefox_test
-        if: "github.event.inputs.deployment_target == 'firefox_test'"
-        run: pytest -v --browser firefox
+
+
 
 
 
