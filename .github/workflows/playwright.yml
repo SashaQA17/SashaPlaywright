@@ -19,7 +19,8 @@ jobs:
       - name: Ensure browsers are installed
         run: python -m playwright install
       - name: Run tests
-        run: pytest -v --browser=firefox
+        run: pytest -v
+
 
 
 
