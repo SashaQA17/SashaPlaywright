@@ -1,8 +1,7 @@
-name: Auto tests
+name: Autoated tests
 
 on:
-  workflow_dispatch:
-
+  push
 
 jobs:
   test:
