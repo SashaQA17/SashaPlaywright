@@ -9,8 +9,8 @@ on:
         default: first_tests
         type: choice
         options:
-          -first_tests
-          -second_tests
+          - first_tests
+          - second_tests
 
 jobs:
   test:
