@@ -1,0 +1,35 @@
+name: manual tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default: chromium_test
+        type: choice
+        options:
+          -chromium_test
+          -firefox_test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: install dependencies
+        run: pip install -r requirements.txt
+      - name: ensure browsers are installed
+        run: python -m playwright install
+      - name: chromium_test
+        if: "github.event.inputs.deployment_target == 'chromium_test'"
+        run: pytest -v
+      - name: firefox_test
+        if: "github.event.inputs.deployment_target == 'firefox_test'"
+        run: pytest -v --browser=firefox
