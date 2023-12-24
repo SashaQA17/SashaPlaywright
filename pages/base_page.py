@@ -9,6 +9,9 @@ class BasePage:
     def open_page(self, url):
         self.page.goto(url)
 
+    async def open_page2(self, url):
+        await self.page.goto(url)
+
 
 #fiend
     def fiend_by_locator(self, locator: tuple):

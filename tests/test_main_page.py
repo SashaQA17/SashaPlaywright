@@ -38,7 +38,7 @@ def test_elements_btn(page):
     expect(page).to_have_url('https://demoqa.com/elements')
     #main_page.screen_shot()
 
-@pytest.mark.skip_browser('chromium')
+@pytest.mark.only_browser('chromium')
 @allure.feature('main page')
 @allure.story('check forms btn')
 def test_forms_btn(page):

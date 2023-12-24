@@ -15,9 +15,14 @@ class MainPage(BasePage):
         super().__init__(page)
 
 
+#open
     def open(self, url):
         with allure.step("open main page"):
             self.open_page(url)
+
+    async def open2(self, url):
+        await self.open_page2(url)
+
 
 #check
     def check_elements_btn(self, locator: tuple):
