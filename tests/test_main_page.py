@@ -77,7 +77,7 @@ def test_interactions_btn(page):
     main_page.click_interactions_btn()
     expect(page).to_have_url('https://demoqa.com/interaction')
     #main_page.screen_shot()
-v
+
 @pytest.mark.only_browser('firefox')
 @allure.feature('main page')
 @allure.story('check booke store btn')
