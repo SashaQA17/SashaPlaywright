@@ -1,92 +1,91 @@
 from pages.main_page import MainPage
-from pages.forms_page import FormsPage
-from pages.elements_page import ElementsPage
-from playwright.sync_api import expect
-import pytest
+from pages.base_page import BasePage
 import allure
+import pytest
+
 
 @pytest.mark.skip_browser('firefox')
 @allure.feature('main page')
 @allure.story('check main page')
 def test_title(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    expect(page).to_have_title('DEMOQA')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .check_title('DEMOQA')\
+        #.screen_shot()
 
 @pytest.mark.only_browser('chromium')
 @allure.feature('main page')
 @allure.story('check all buttons')
 def test_all_buttons(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.check_elements_btn('//h5[text()="Elements"]')
-    main_page.check_forms_btn('//h5[text()="Forms"]')
-    main_page.check_alerts_btn('//h5[text()="Alerts, Frame & Windows"]')
-    main_page.check_widget_btn('//h5[text()="Widgets"]')
-    main_page.check_interactions_btn('//h5[text()="Interactions"]')
-    main_page.check_book_store_btn('//h5[text()="Book Store Application"]')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .check_elements_btn('//h5[text()="Elements"]') \
+        .check_forms_btn('//h5[text()="Forms"]') \
+        .check_alerts_btn('//h5[text()="Alerts, Frame & Windows"]') \
+        .check_widget_btn('//h5[text()="Widgets"]') \
+        .check_interactions_btn('//h5[text()="Interactions"]') \
+        .check_book_store_btn('//h5[text()="Book Store Application"]') \
+        #.screen_shot()
 
 @pytest.mark.only_browser('chromium')
 @allure.feature('main page')
 @allure.story('check elements btn')
 def test_elements_btn(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.click_elements_btn()
-    expect(page).to_have_url('https://demoqa.com/elements')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .click_elements_btn() \
+        .check_url('https://demoqa.com/elements') \
+        #.screen_shot()
 
 @pytest.mark.only_browser('chromium')
 @allure.feature('main page')
 @allure.story('check forms btn')
 def test_forms_btn(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.click_forms_btn()
-    expect(page).to_have_url('https://demoqa.com/forms')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .click_forms_btn() \
+        .check_url('https://demoqa.com/forms') \
+        #.screen_shot()
 
 @pytest.mark.skip
 @allure.feature('main page')
 @allure.story('check alerts btn')
 def test_alerts_btn(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.click_alerts_btn()
-    expect(page).to_have_url('https://demoqa.com/alertsWindows')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .click_alerts_btn() \
+        .check_url('https://demoqa.com/alertsWindows') \
+        #.screen_shot()
 
 @pytest.mark.skip
 @allure.feature('main page')
 @allure.story('check wiget btn')
 def test_widget_btn(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.click_widget_btn()
-    expect(page).to_have_url('https://demoqa.com/widgets')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .click_widget_btn() \
+        .check_url('https://demoqa.com/widgets') \
+        #.screen_shot()
 
 @pytest.mark.skip_browser('chromium')
 @allure.feature('main page')
 @allure.story('check interactions btn')
 def test_interactions_btn(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.click_interactions_btn()
-    expect(page).to_have_url('https://demoqa.com/interaction')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .click_interactions_btn() \
+        .check_url('https://demoqa.com/interaction') \
+        #.screen_shot()
 
 @pytest.mark.only_browser('firefox')
 @allure.feature('main page')
 @allure.story('check booke store btn')
 def test_book_store_btn(page):
-    main_page = MainPage(page)
-    main_page.open('https://demoqa.com/')
-    main_page.click_book_store_btn()
-    expect(page).to_have_url('https://demoqa.com/books')
-    #main_page.screen_shot()
+    MainPage(page) \
+        .open() \
+        .click_book_store_btn() \
+        .check_url('https://demoqa.com/books') \
+        #.screen_shot()
 
 
 

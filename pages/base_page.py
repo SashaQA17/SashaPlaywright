@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from datetime import datetime
+import allure
 
 class BasePage:
     def __init__(self, page: Page):
@@ -9,7 +10,7 @@ class BasePage:
     def open_page(self, url):
         self.page.goto(url)
 
-    async def open_page2(self, url):
+    async def open_page_async(self, url):
         await self.page.goto(url)
 
 
@@ -22,7 +23,7 @@ class BasePage:
     def click_by_locator(self, locator: tuple):
         self.page.locator(locator).click()
 
-    def click_by_text(self, text):
+    def click_by_text(self, text: str):
         self.page.get_by_text(text).click()
 
 
@@ -32,6 +33,16 @@ class BasePage:
 
 
 #check
+    def check_url(self, url):
+        with allure.step("check url"):
+            expect(self.page).to_have_url(url)
+            return self
+
+    def check_title(self, text: str):
+        with allure.step("check title"):
+            expect(self.page).to_have_title(text)
+            return self
+
     def check_elm(self, locator: tuple):
         element = self.page.locator(locator)
         expect(element).to_be_visible()

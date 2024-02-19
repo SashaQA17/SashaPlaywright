@@ -3,7 +3,6 @@ from playwright.async_api import async_playwright
 import pytest
 
 
-
 @pytest.mark.asyncio
 async def test_first():
     async with async_playwright() as p:
