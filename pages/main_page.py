@@ -30,7 +30,6 @@ class MainPage(BasePage):
     async def open_async(self, url):
         await self.open_page_async(url)
 
-
 #check
     def check_elements_btn(self, locator: str):
         with allure.step("check elements btn"):
@@ -65,7 +64,6 @@ class MainPage(BasePage):
     def check_link(self, locator: tuple):
         with allure.step("check link"):
             self.check_elm(locator)
-
 
 #click
     def click_elements_btn(self):

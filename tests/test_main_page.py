@@ -13,6 +13,7 @@ def test_title(page):
         .check_title('DEMOQA')\
         #.screen_shot()
 
+
 @pytest.mark.only_browser('chromium')
 @allure.feature('main page')
 @allure.story('check all buttons')
@@ -27,6 +28,7 @@ def test_all_buttons(page):
         .check_book_store_btn('//h5[text()="Book Store Application"]') \
         #.screen_shot()
 
+
 @pytest.mark.only_browser('chromium')
 @allure.feature('main page')
 @allure.story('check elements btn')
@@ -36,6 +38,7 @@ def test_elements_btn(page):
         .click_elements_btn() \
         .check_url('https://demoqa.com/elements') \
         #.screen_shot()
+
 
 @pytest.mark.only_browser('chromium')
 @allure.feature('main page')
@@ -47,6 +50,7 @@ def test_forms_btn(page):
         .check_url('https://demoqa.com/forms') \
         #.screen_shot()
 
+
 @pytest.mark.skip
 @allure.feature('main page')
 @allure.story('check alerts btn')
@@ -56,6 +60,7 @@ def test_alerts_btn(page):
         .click_alerts_btn() \
         .check_url('https://demoqa.com/alertsWindows') \
         #.screen_shot()
+
 
 @pytest.mark.skip
 @allure.feature('main page')
@@ -67,6 +72,7 @@ def test_widget_btn(page):
         .check_url('https://demoqa.com/widgets') \
         #.screen_shot()
 
+
 @pytest.mark.skip_browser('chromium')
 @allure.feature('main page')
 @allure.story('check interactions btn')
@@ -76,6 +82,7 @@ def test_interactions_btn(page):
         .click_interactions_btn() \
         .check_url('https://demoqa.com/interaction') \
         #.screen_shot()
+
 
 @pytest.mark.only_browser('firefox')
 @allure.feature('main page')
