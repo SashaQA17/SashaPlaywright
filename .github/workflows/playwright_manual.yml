@@ -88,11 +88,11 @@ jobs:
         run: python -m playwright install
       - name: first_tests
         if: "github.event.inputs.deployment_target == 'first_tests'"
-        run: pytest -v tests/test_main_page.py --alluredir=allure_results
+        run: pytest -v tests_demoqa/test_main_page.py --alluredir=allure_results
         continue-on-error: true
       - name: second_tests
         if: "github.event.inputs.deployment_target == 'second_tests'"
-        run: pytest -v --browser=firefox tests/test_main_page.py --alluredir=allure_results
+        run: pytest -v --browser=firefox tests_demoqa/test_main_page.py --alluredir=allure_results
         continue-on-error: true
       - name: store allure results
         uses: actions/upload-artifact@v3
