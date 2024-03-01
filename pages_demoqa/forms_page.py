@@ -1,4 +1,4 @@
-from pages.base_page import BasePage
+from pages_common.base_page import BasePage
 from playwright.sync_api import expect
 import allure
 
@@ -16,9 +16,7 @@ class FormsPage(BasePage):
             self.open_page(self.url)
             return self
 
-#check
 
-#click
 
 
 

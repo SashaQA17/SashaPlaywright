@@ -1,7 +1,6 @@
-from pages.main_page import MainPage
-from pages.forms_page import FormsPage
-from pages.base_page import BasePage
-from pages.left_menu_page import LeftMenuPage
+from pages_demoqa.main_page import MainPage
+from pages_demoqa.forms_page import FormsPage
+from pages_demoqa.left_menu_page import LeftMenuPage
 import allure
 import pytest
 
@@ -9,7 +8,7 @@ import pytest
 @pytest.mark.skip_browser('firefox')
 @allure.feature('forms page')
 @allure.story('check title')
-def test_title(page):
+def test_check_url(page):
     FormsPage(page) \
         .open() \
         .check_url('https://demoqa.com/forms') \
@@ -21,7 +20,8 @@ def test_title(page):
 @allure.story('check practice form btn')
 def test_check_practice_form_btn(page):
     FormsPage(page) \
-        .open() \
+        .open()
+    LeftMenuPage(page) \
         .check_practice_form_btn('//span[text()="Practice Form"]') \
         #.screen_shot()
 
@@ -31,7 +31,8 @@ def test_check_practice_form_btn(page):
 @allure.story('click practice form btn')
 def test_click_practice_form_btn(page):
     FormsPage(page) \
-        .open() \
+        .open()
+    LeftMenuPage(page) \
         .click_practice_form_btn() \
         .check_url('https://demoqa.com/automation-practice-form')
         #.screen_shot()

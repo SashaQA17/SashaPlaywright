@@ -1,5 +1,7 @@
-/tests/.pytest_cache/
+/tests_avito/.pytest_cache/
+/tests_demoqa/.pytest_cache/
 /.idea
 /venv/
 /.pytest_cache
 /allure_results/
+/screenshots/

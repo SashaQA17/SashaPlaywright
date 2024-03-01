@@ -1,6 +1,6 @@
-from pages.main_page import MainPage
-from pages.left_menu_page import LeftMenuPage
-from pages.automation_practice_form_page import AutomationPracticeFormPage
+from pages_demoqa.main_page import MainPage
+from pages_demoqa.left_menu_page import LeftMenuPage
+from pages_demoqa.automation_practice_form_page import AutomationPracticeFormPage
 from data.generate_person import generate
 import allure
 import pytest
@@ -8,6 +8,7 @@ import pytest
 male = '//*[contains(text(), "Male")]'
 female = '//*[contains(text(), "Female")]'
 other = '//*[contains(text(), "Other")]'
+
 
 @allure.feature('automation practice form page')
 @allure.story('check main text')

@@ -18,12 +18,6 @@ class BasePage:
     def fiend_by_locator(self, locator: tuple):
         self.page.locator(locator)
 
-    def print_text(self):
-        prices = self.page.query_selector_all('//strong[@class="styles-module-root-LIAav"]/span')[0:5]
-        for i in prices:
-            print(i.text_content())
-
-
 #click
     def click_by_locator(self, locator: tuple):
         self.page.locator(locator).click()
@@ -58,6 +52,12 @@ class BasePage:
         element = self.page.get_by_text(text)
         expect(element).to_be_visible()
 
+#get text
+    def get_text(self, locator):
+        return self.page.locator(locator).text_content()
+
+
+
 #screenshot
     def screen_shot(self):
         current_time = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
@@ -65,6 +65,11 @@ class BasePage:
         self.page.screenshot(path=f'/Users/sasha/PycharmProjects/SashaPlaywright/screenshots/{screen}')
         return self
 
+
+
+    # def print_text(self, locator):
+    #         price = self.page.query_selector(locator)
+    #         print(price.text_text())
 
 
 

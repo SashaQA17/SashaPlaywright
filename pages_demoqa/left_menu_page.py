@@ -1,4 +1,4 @@
-from pages.base_page import BasePage
+from pages_common.base_page import BasePage
 import allure
 
 
@@ -15,6 +15,8 @@ class LeftMenuPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
 
+
+
 #click
     def click_practice_form_btn(self):
         with allure.step("click practice form btn"):
@@ -26,7 +28,7 @@ class LeftMenuPage(BasePage):
             self.click_by_locator(self.book_store_application_btn)
             return self
 
-# check
+#check
     def check_practice_form_btn(self, locator: tuple):
         with allure.step("check practice form btn"):
             self.check_elm(locator)
