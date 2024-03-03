@@ -1,5 +1,4 @@
-from pages.main_page import MainPage
-from pages.base_page import BasePage
+from pages_demoqa.main_page import MainPage
 import allure
 import pytest
 
