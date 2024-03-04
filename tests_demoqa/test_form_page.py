@@ -8,8 +8,8 @@ import pytest
 @pytest.mark.skip_browser('firefox')
 @allure.feature('forms page')
 @allure.story('check title')
-def test_check_url(page):
-    FormsPage(page) \
+def test_check_url(browser):
+    FormsPage(browser) \
         .open() \
         .check_url('https://demoqa.com/forms') \
         #.screen_shot()
@@ -18,10 +18,10 @@ def test_check_url(page):
 @pytest.mark.skip_browser('firefox')
 @allure.feature('forms page')
 @allure.story('check practice form btn')
-def test_check_practice_form_btn(page):
-    FormsPage(page) \
+def test_check_practice_form_btn(browser):
+    FormsPage(browser) \
         .open()
-    LeftMenuPage(page) \
+    LeftMenuPage(browser) \
         .check_practice_form_btn('//span[text()="Practice Form"]') \
         #.screen_shot()
 
@@ -29,10 +29,10 @@ def test_check_practice_form_btn(page):
 @pytest.mark.skip_browser('firefox')
 @allure.feature('forms page')
 @allure.story('click practice form btn')
-def test_click_practice_form_btn(page):
-    FormsPage(page) \
+def test_click_practice_form_btn(browser):
+    FormsPage(browser) \
         .open()
-    LeftMenuPage(page) \
+    LeftMenuPage(browser) \
         .click_practice_form_btn() \
         .check_url('https://demoqa.com/automation-practice-form')
         #.screen_shot()

@@ -22,6 +22,10 @@ class BasePage:
     def click_by_locator(self, locator: tuple):
         self.page.locator(locator).click()
 
+    def check_checkbox(self, locator: tuple):
+        self.page.locator(locator).check()
+        self.page.wait_for_selector(locator).is_checked()
+
     def click_by_text(self, text: str):
         self.page.get_by_text(text).click()
 

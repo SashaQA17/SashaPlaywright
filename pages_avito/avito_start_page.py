@@ -6,6 +6,8 @@ import allure
 class AvitoStartPage(BasePage):
 
     url = 'https://www.avito.ru/penza/transport?cd=1'
+    new_btn = '//span[text()="Новые"]'
+    fiend_btn = '//span[text()="Найти"]'
     all_category_btn ='//button[@data-marker="top-rubricator/all-categories"]'
     region_btn = '//div[@data-marker="search-form/change-location"]'
     search_field = '//input[@data-marker ="search-form/suggest"]'
@@ -27,6 +29,16 @@ class AvitoStartPage(BasePage):
             return self
 
 #click
+    def click_new_btn(self):
+        with allure.step("click new btn"):
+            self.check_checkbox(self.new_btn)
+            return self
+
+    def click_fiend(self):
+        with allure.step("click fiend brtn"):
+            self.click_by_locator(self.fiend_btn)
+            return self
+
     def click_select_region(self):
         with allure.step("click select region btn"):
             self.click_by_locator(self.region_btn)
@@ -55,7 +67,13 @@ class AvitoStartPage(BasePage):
 #fill_in
     def fill_in_search_field(self, text: str):
         with allure.step("fill in search field"):
+            self.page.wait_for_selector('//*[@*="Поиск по объявлениям"]').is_disabled()
             self.fill_in_by_locator(self.search_field, text)
+            self.page.wait_for_timeout(1000)
+            self.click_fiend()
+            self.page.wait_for_timeout(1000)
+            self.click_new_btn()
+            self.page.wait_for_timeout(1000)
             return self
 
     def fill_in_region_field(self, text: str):
@@ -67,15 +85,20 @@ class AvitoStartPage(BasePage):
     def select_region(self, region: str):
         with allure.step(f"select region: {region}"):
             self.click_select_region()
+            self.page.wait_for_timeout(1000)
             self.fill_in_region_field(region)
+            self.page.wait_for_timeout(1000)
             self.select_first_item()
             self.click_show_result()
             return self
 
     def sort_by(self, param: str):
         with allure.step(f"sort by {param}"):
+            self.page.wait_for_timeout(1000)
             self.click_sort_btn()
+            self.page.wait_for_timeout(1000)
             self.select_sort(param)
+            self.page.wait_for_timeout(3000)
             return self
 
     def print_text(self, count):
@@ -84,6 +107,8 @@ class AvitoStartPage(BasePage):
             prices = elements[0:min(count, len(elements))]
             for i in prices:
                 print(i.text_content())
+                return self
+
 
     def select_market_sub_category(self, category, subcategory):
         with allure.step("click all category btn"):
@@ -96,6 +121,7 @@ class AvitoStartPage(BasePage):
             with allure.step("click orgtehnika and rashodniki btn"):
                 self.click_by_locator(f'//strong[@data-name="{subcategory}"]')
         return self
+
 
 
 
