@@ -1,5 +1,4 @@
 from pages_common.base_page import BasePage
-from playwright.sync_api import expect
 import allure
 
 
@@ -10,11 +9,12 @@ class FormsPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
 
+
 #open
+    @allure.step("open form page")
     def open(self):
-        with allure.step("open form page"):
-            self.open_page(self.url)
-            return self
+        self.open_page(self.url)
+        return self
 
 
 

@@ -16,43 +16,42 @@ class LeftMenuPage(BasePage):
         super().__init__(page)
 
 
-
 #click
+    @allure.step("click practice form btn")
     def click_practice_form_btn(self):
-        with allure.step("click practice form btn"):
-            self.click_by_text(self.practice_form_btn_text)
-            return self
+        self.click_by_text(self.practice_form_btn_text)
+        return self
 
+    @allure.step("click book store application btn")
     def click_book_store_application_btn(self):
-        with allure.step("click book store application btn"):
-            self.click_by_locator(self.book_store_application_btn)
-            return self
+        self.click_by_locator(self.book_store_application_btn)
+        return self
 
 #check
+    @allure.step("check practice form btn")
     def check_practice_form_btn(self, locator: tuple):
-        with allure.step("check practice form btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check login btn")
     def check_login_btn(self, locator):
-        with allure.step("check login btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check book store btn")
     def check_book_store_btn(self, locator):
-        with allure.step("check book store btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check profile btn")
     def check_profile_btn(self, locator):
-        with allure.step("check profile btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check_book_store_api_btn")
     def check_book_store_api_btn(self, locator):
-        with allure.step("check_book_store_api_btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
 
 

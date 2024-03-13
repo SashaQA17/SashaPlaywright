@@ -1,5 +1,4 @@
 from pages_common.base_page import BasePage
-from playwright.sync_api import expect
 import allure
 
 
@@ -7,7 +6,7 @@ class AvitoStartPage(BasePage):
 
     url = 'https://www.avito.ru/penza/transport?cd=1'
     new_btn = '//span[text()="Новые"]'
-    fiend_btn = '//span[text()="Найти"]'
+    find_btn = '//span[text()="Найти"]'
     all_category_btn ='//button[@data-marker="top-rubricator/all-categories"]'
     region_btn = '//div[@data-marker="search-form/change-location"]'
     search_field = '//input[@data-marker ="search-form/suggest"]'
@@ -23,107 +22,104 @@ class AvitoStartPage(BasePage):
         super().__init__(page)
 
 #open
+    @allure.step("open first link")
     def open(self):
-        with allure.step("open first link"):
-            self.open_page(self.url)
-            return self
+        self.page.set_default_timeout(60000)
+        self.open_page(self.url)
+        return self
 
 #click
-    def click_new_btn(self):
-        with allure.step("click new btn"):
-            self.check_checkbox(self.new_btn)
-            return self
+    @allure.step("click find btn")
+    def click_find(self):
+        self.click_by_locator(self.find_btn)
+        return self
 
-    def click_fiend(self):
-        with allure.step("click fiend brtn"):
-            self.click_by_locator(self.fiend_btn)
-            return self
-
+    @allure.step("click select region btn")
     def click_select_region(self):
-        with allure.step("click select region btn"):
-            self.click_by_locator(self.region_btn)
-            return self
+        self.click_by_locator(self.region_btn)
+        return self
 
+    @allure.step("select first item")
     def select_first_item(self):
-        with allure.step("select first item"):
-            self.click_by_locator(self.first_item)
-            return self
+        self.click_by_locator(self.first_item)
+        return self
 
+    @allure.step("click show result btn")
     def click_show_result(self):
-        with allure.step("click show result btn"):
-            self.click_by_locator(self.show_result_btn)
-            return self
+        self.click_by_locator(self.show_result_btn)
+        return self
 
+    @allure.step("click sort btn")
     def click_sort_btn(self):
-        with allure.step("click sort btn"):
-            self.click_by_locator(self.sort_btn)
-            return self
+        self.click_by_locator(self.sort_btn)
+        return self
 
+    @allure.step("select sort by {param}")
     def select_sort(self, param):
-        with allure.step(f"select sort by {param} "):
-            self.click_by_locator(f'//div[text()="{param}"]')
-            return self
+        self.click_by_locator(f'//div[text()="{param}"]')
+        return self
 
-#fill_in
-    def fill_in_search_field(self, text: str):
-        with allure.step("fill in search field"):
-            self.page.wait_for_selector('//*[@*="Поиск по объявлениям"]').is_disabled()
-            self.fill_in_by_locator(self.search_field, text)
-            self.page.wait_for_timeout(1000)
-            self.click_fiend()
-            self.page.wait_for_timeout(1000)
-            self.click_new_btn()
-            self.page.wait_for_timeout(1000)
-            return self
-
-    def fill_in_region_field(self, text: str):
-        with allure.step(f"fill in search field: {text}"):
-            self.clear_and_fill_in(self.region_field, text)
-            return self
-
-#functional
-    def select_region(self, region: str):
-        with allure.step(f"select region: {region}"):
-            self.click_select_region()
-            self.page.wait_for_timeout(1000)
-            self.fill_in_region_field(region)
-            self.page.wait_for_timeout(1000)
-            self.select_first_item()
-            self.click_show_result()
-            return self
-
-    def sort_by(self, param: str):
-        with allure.step(f"sort by {param}"):
-            self.page.wait_for_timeout(1000)
-            self.click_sort_btn()
-            self.page.wait_for_timeout(1000)
-            self.select_sort(param)
-            self.page.wait_for_timeout(3000)
-            return self
-
-    def print_text(self, count):
-        with  allure.step(f"print the first {count} prices"):
-            elements = self.page.query_selector_all('//p[@data-marker="item-price"]/strong/span')
-            prices = elements[0:min(count, len(elements))]
-            for i in prices:
-                print(i.text_content())
-                return self
-
-
-    def select_market_sub_category(self, category, subcategory):
-        with allure.step("click all category btn"):
-            self.click_by_locator(self.all_category_btn)
-
-        with allure.step(f"click {category} btn"):
-            self.click_by_locator(f'//p[text()="{category}"]')
-
-        if subcategory is not None:
-            with allure.step("click orgtehnika and rashodniki btn"):
-                self.click_by_locator(f'//strong[@data-name="{subcategory}"]')
+#check
+    @allure.step("set new checkbox as: {state}")
+    def check_new_checkbox(self, state):
+        self.check_checkbox(self.new_btn, state)
         return self
 
 
+#fill_in
+    @allure.step("fill in search field: {text}")
+    def fill_in_region_field(self, text: str):
+        self.clear_and_fill_in(self.region_field, text)
+        return self
 
+#functional
+    @allure.step("fill in search field")
+    def fill_in_search_field(self, text: str):
+        self.page.wait_for_selector('//*[@*="Поиск по объявлениям"]').is_visible()  # Ждем пока в поле появиться текс
+        el = self.page.locator(self.search_field)  # Находим поисковое поле, кликаем, вводим текст
+        el.click()
+        el.type(text)
+        self.click_find() # Нажимаем кнопку найти значение из поискового поля
+        self.page.wait_for_load_state()
+        return self
+
+    @allure.step("select region: {region}")
+    def select_region(self, region: str):
+        self.click_select_region()  # Нажать на выбор региона
+        self.fill_in_region_field(region)  # В окне выбора региона ввести значение в поле
+        self.select_first_item()  # Выбрать первый элемент из списка автодополнения
+        self.click_show_result()  # Нажать на кнопку Показать результаты, внутри проверятся что она загрузилась
+        self.page.wait_for_load_state()
+        return self
+
+    @allure.step("sort by {param}")
+    def sort_by(self, param: str):
+        self.click_sort_btn() # Нажимаем на сортировку вывода поиска
+        self.select_sort(param) # Выбираем пораметр сортировки
+        self.page.wait_for_load_state()
+        return self
+
+    @allure.step("print the first {count} prices")
+    def print_text(self, count):
+        elements = self.page.query_selector_all('//p[@data-marker="item-price"]/strong/span')  # Выводим цену товара
+        prices = elements[0:min(count, len(elements))]
+        print()
+        for i in prices:
+            print(i.text_content())
+        return self
+
+    @allure.step("select sub_category")
+    def select_market_sub_category(self, category, subcategory):
+        with allure.step("click all category btn"):
+            self.click_by_locator(self.all_category_btn)  # Нажимаем на кнопку: все категории
+
+        with allure.step(f"click category: {category}"):
+            self.click_by_locator(f'//p[text()="{category}"]') # Выбираем одну из каткгорий
+
+        if subcategory is not None:
+            with allure.step(f"click subcategory: {subcategory}"): # Выбираем одну из подкатегорий
+                self.click_by_locator(f'//strong[@data-name="{subcategory}"]')
+        return self
 
 
 

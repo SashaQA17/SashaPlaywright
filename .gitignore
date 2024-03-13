@@ -3,5 +3,5 @@
 /.idea
 /venv/
 /.pytest_cache
-/allure_results/
-/screenshots/
+allure_results
+screenshots

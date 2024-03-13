@@ -1,5 +1,4 @@
 from pages_common.base_page import BasePage
-from playwright.sync_api import expect
 import allure
 
 
@@ -17,36 +16,36 @@ class AutomationPracticeFormPage(BasePage):
 
 
 #open
+    @allure.step("open automation practice form page")
     def open(self):
-        with allure.step("open automation practice form page"):
-            self.open_page(self.url)
-            return self
+        self.open_page(self.url)
+        return self
 
 #check
+    @allure.step("check text")
     def check_main_text(self, locator: tuple):
-        with allure.step("check the main text"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
 #click
+    @allure.step("select gender")
     def select_gender(self, locator: tuple):
-        with allure.step("select gender"):
-            self.click_by_locator(locator)
-            return self
+        self.click_by_locator(locator)
+        return self
 
 #fill_in
+    @allure.step("fill in first name")
     def fill_in_first_name(self, text: str):
-        with allure.step("fill in first name"):
-            self.fill_in_by_locator(self.first_name, text)
-            return self
+        self.fill_in_by_locator(self.first_name, text)
+        return self
 
+    @allure.step("fill in last name")
     def fill_in_last_name(self, text: str):
-        with allure.step("fill in last name"):
-            self.fill_in_by_locator(self.last_name, text)
-            return self
+        self.fill_in_by_locator(self.last_name, text)
+        return self
 
+    @allure.step("fill in email")
     def fill_in_email(self, text: str):
-        with allure.step("fill in email"):
-            self.fill_in_by_locator(self.email, text)
-            return self
+        self.fill_in_by_locator(self.email, text)
+        return self
 

@@ -1,5 +1,4 @@
 from pages_common.base_page import BasePage
-from playwright.sync_api import expect
 import allure
 
 
@@ -18,83 +17,81 @@ class MainPage(BasePage):
         super().__init__(page)
 
 #open
-    # def open(self, url):
-    #     with allure.step("open main page"):
-    #         self.open_page(url)
-
+    @allure.step("open main page")
     def open(self):
-        with allure.step("open main page"):
-            self.open_page(self.url)
-            return self
+        self.open_page(self.url)
+        return self
 
     async def open_async(self, url):
         await self.open_page_async(url)
 
 #check
+    @allure.step("check elements btn")
     def check_elements_btn(self, locator: str):
-        with allure.step("check elements btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+
+    @allure.step("check forms btn")
     def check_forms_btn(self, locator: str):
-        with allure.step("check forms btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check alerts btn")
     def check_alerts_btn(self, locator: tuple):
-        with allure.step("check alerts btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check widget btn")
     def check_widget_btn(self, locator: tuple):
-        with allure.step("check widget btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+
+    @allure.step("check interactions btn")
     def check_interactions_btn(self, locator: tuple):
-        with allure.step("check interactions btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check book store btn")
     def check_book_store_btn(self, locator: tuple):
-        with allure.step("check book store btn"):
-            self.check_elm(locator)
-            return self
+        self.check_elm(locator)
+        return self
 
+    @allure.step("check link")
     def check_link(self, locator: tuple):
-        with allure.step("check link"):
-            self.check_elm(locator)
+        self.check_elm(locator)
 
 #click
+    @allure.step("click elements btn")
     def click_elements_btn(self):
-        with allure.step("click elements btn"):
-            self.click_by_locator(self.elements_btn)
-            return self
+        self.click_by_locator(self.elements_btn)
+        return self
 
+    @allure.step("click forms btn")
     def click_forms_btn(self):
-        with allure.step("click forms btn"):
-            self.click_by_locator(self.forms_btn)
-            return self
+        self.click_by_locator(self.forms_btn)
+        return self
 
+    @allure.step("click alerts btn")
     def click_alerts_btn(self):
-        with allure.step("click alerts btn"):
-            self.click_by_locator(self.alerts_btn)
-            return self
+        self.click_by_locator(self.alerts_btn)
+        return self
 
+    @allure.step("click widget btn")
     def click_widget_btn(self):
-        with allure.step("click widget btn"):
-            self.click_by_locator(self.widget_btn)
-            return self
+        self.click_by_locator(self.widget_btn)
+        return self
 
+    @allure.step("click interactions btn")
     def click_interactions_btn(self):
-        with allure.step("click interactions btn"):
-            self.click_by_locator(self.interactions_btn)
-            return self
+        self.click_by_locator(self.interactions_btn)
+        return self
 
+    @allure.step("click book store btn")
     def click_book_store_btn(self):
-        with allure.step("click book store btn"):
-            self.click_by_locator(self.book_store_btn)
-            return self
+        self.click_by_locator(self.book_store_btn)
+        return self
 
 
 
