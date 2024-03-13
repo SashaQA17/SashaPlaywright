@@ -8,8 +8,9 @@ class BasePage:
         self.page = page
 
 #open
-    def open_page(self, url):
-        self.page.goto(url, timeout=60000)
+    def open_page(self, url, params=None):
+        self.page.set_default_timeout(params['page_load_timeout_ms'])
+        self.page.goto(url, timeout=params['page_load_timeout_ms'])
 
     async def open_page_async(self, url):
         await self.page.goto(url)

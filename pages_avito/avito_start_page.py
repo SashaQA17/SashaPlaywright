@@ -1,13 +1,11 @@
 from pages_common.base_page import BasePage
 import allure
-
+import pytest
 
 class AvitoStartPage(BasePage):
-
-    url = 'https://www.avito.ru/penza/transport?cd=1'
     new_btn = '//span[text()="Новые"]'
     find_btn = '//span[text()="Найти"]'
-    all_category_btn ='//button[@data-marker="top-rubricator/all-categories"]'
+    all_category_btn = '//button[@data-marker="top-rubricator/all-categories"]'
     region_btn = '//div[@data-marker="search-form/change-location"]'
     search_field = '//input[@data-marker ="search-form/suggest"]'
     region_field = '//input[@placeholder = "Город или регион"]'
@@ -20,12 +18,12 @@ class AvitoStartPage(BasePage):
 
     def __init__(self, page):
         super().__init__(page)
+        self.url = pytest.test_data['url'] + '/penza/transport?cd=1'
 
 #open
     @allure.step("open first link")
     def open(self):
-        self.page.set_default_timeout(60000)
-        self.open_page(self.url)
+        self.open_page(self.url, pytest.test_data)
         return self
 
 #click

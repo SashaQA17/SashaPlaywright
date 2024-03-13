@@ -1,0 +1,8 @@
+{
+    "url": "https://www.avito.ru",
+    "browser": "chromium",
+    "maximize": true,
+    "headless": true,
+    "page_load_timeout_ms": 60000,
+    "common_data": "123"
+}
